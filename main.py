@@ -11,15 +11,21 @@ class Horse:
                  post_position,
                  postion_at_quarter,
                  parked_out,
-                 lengths_gained_in_stretch):
+                 lengths_gained_in_stretch,
+                 last_race_favourite,
+                 last_race_outcome,
+                 equivalent_odds):
         self.horse_name = horse_name
         self.horse_time = horse_time
         self.from_track_time = from_track_time
         self.to_track_time = to_track_time
-        self.horse_post_position = post_position,
-        self.horse_position_at_quarter = postion_at_quarter,
+        self.horse_post_position = post_position
+        self.horse_position_at_quarter = postion_at_quarter
         self.horse_parked_out = parked_out
         self.horse_lengths_gained_in_stretch = lengths_gained_in_stretch
+        self.horse_favourite = last_race_favourite
+        self.horse_outcome = last_race_outcome
+        self.horse_equivalent_odds = equivalent_odds
 
 
     def calculate(self):
@@ -29,7 +35,7 @@ class Horse:
         speed = score.calc_speed_points(minute, second, fifth)
         effort = score.calc_effort_points(self.horse_post_position, self.horse_position_at_quarter, self.horse_parked_out)
         stretch_finish = score.calc_stretch_finish(self.horse_parked_out, self.horse_lengths_gained_in_stretch)
-
+        last_race_odds = score.calc_last_race_odds(self.horse_favourite, self.horse_outcome, self.horse_equivalent_odds)
 
 
 if __name__ == "__main__":
@@ -41,7 +47,11 @@ if __name__ == "__main__":
                    post_position='8',
                    postion_at_quarter='4',
                    parked_out='1w2q_nc',
-                   lengths_gained_in_stretch = '2')
+                   lengths_gained_in_stretch = '2',
+                   last_race_favourite='yes',
+                   last_race_outcome='win',
+                   equivalent_odds='3'
+                   )
     horse2 = Horse(horse_name="Bonnie Bunny",
                    horse_time="2:10:0",
                    from_track_time="2:05:3",
@@ -49,7 +59,10 @@ if __name__ == "__main__":
                    post_position='7',
                    postion_at_quarter='4',
                    parked_out='1w1q',
-                   lengths_gained_in_stretch='10'
+                   lengths_gained_in_stretch='10',
+                   last_race_favourite='yes',
+                   last_race_outcome='lose',
+                   equivalent_odds='2.1'
                    )
     horse3 = Horse(horse_name="Drunken Pony",
                    horse_time="2:10:0",
@@ -58,7 +71,10 @@ if __name__ == "__main__":
                    post_position='7',
                    postion_at_quarter='4',
                    parked_out=np.nan,
-                   lengths_gained_in_stretch='6'
+                   lengths_gained_in_stretch='6',
+                   last_race_favourite='yes',
+                   last_race_outcome='lose',
+                   equivalent_odds='1.5'
                    )
     horse1.calculate()
     horse2.calculate()

@@ -110,3 +110,20 @@ class Score:
         if debug: print(f'Stretch and Finish - Total SF Points = {sf_points}')
 
         return sf_points
+
+    def calc_last_race_odds(self, last_race_favourite, last_race_outcome, equivalent_odds):
+        # If else statements to assign points based on whether the horse was a fave / won their last race.
+        # There is a sentence saying to give three points, win or lose, to a horse with less than 2 eq odds. Seems odd?
+        if float(equivalent_odds) <= 2:
+            odds_points = 3
+        elif last_race_favourite == 'yes' and last_race_outcome == 'win':
+            odds_points = 3
+        elif last_race_favourite == 'yes' and last_race_outcome == 'lose':
+            odds_points = 5
+        else:
+            odds_points = 0
+
+
+        if debug: print(f'Last Race Odds Points = {odds_points}.')
+        return odds_points
+
